@@ -30,5 +30,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-#.env作成時に記述
+
+#.env作成時に記述.env訂正
 /.env

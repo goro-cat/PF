@@ -1,25 +1,49 @@
-# README
+# まよほご掲示板
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+いなくなったペットの情報や保護されているペットの情報を投稿できるようにし、情報を集めることで、飼い主や里親を見つけやすくするサイト
 
-Things you may want to cover:
+## サイトテーマ
+すぐに情報を取得できる、ペットの迷子、保護、里親募集の情報サイト
 
-* Ruby version
+## テーマを選んだ理由
+犬と猫を飼っているのですが、飼っているペットが何かの拍子に脱走してしまった経験、動物を保護して里親を探した経験が多々あります。どちらのときも行ったのは、いち早く情報が欲しいためチラシを作成し人目に付く場所に掲示をお願いしたり、警察に相談にいったりしました。
+幸い脱走したペットは家に帰ってきましたが、もし遠くまで行ってしまっていたら探すのはとても大変です。
 
-* System dependencies
+  そんな時、**『迷子や保護された情報が一か所に集まるサイトがあれば・・・』**  
+  >探しているペットの情報を誰かが教えてくれるかもしれない、誰かが保護してくれているのかもしれない、  
+  動物を保護したとき、飼い主を見つけられるかもしれない、里親になりたい人が出てくれるかもしれない、  
+  動物を飼うことを考えていたとき、ペットとして迎えたい子がいるかもしれない、
+  
+これらは、利用者が増えれば増えるほど、情報が増え可能性が高まっていくものだと思います。  
+又、最近では家にいる機会も増えたことでペットを飼う人が増加傾向にあります。一方で、殺処分０を国も目指していますが飼い主がペットを手放すケースがあります。手放す場合、里親を探すことが推進されているので、その時にもツールの一つになってくれると思います。
 
-* Configuration
+このような思いから、すぐに情報を取得できる、ペットの迷子、保護、里親募集の情報サイトをテーマに制作しました。
 
-* Database creation
 
-* Database initialization
+## ターゲットユーザ
+- ペットを飼っている人
+- 動物を保護した人
+- 動物の保護を考えている人
 
-* How to run the test suite
+## 主な利用シーン
+- ペットを飼っている人  
+   捜索しているペットの情報を載せる/コメントから目撃情報を得る/保護されていた場合、保護した人と連絡をとれる
+- 動物を保護した人  
+   保護している動物の情報を載せる/飼い主や保護を考えている人と連絡をとれる
+- 動物の保護を考えている人  
+   保護されている気になる動物に気になるボタンを押せる/保護した人と連絡をとれる
+ 
 
-* Services (job queues, cache servers, search engines, etc.)
+## アプリケーション詳細設計書
+https://docs.google.com/spreadsheets/d/1qLYgNsBgG5x3VWkgzBZUFKdHDMm1ct0cFCdqQOcOtIY/edit?usp=sharing
 
-* Deployment instructions
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1_18cciqX6NY7KaSshOKlWu0BUlw1LmLAsefI8ehcq5k/edit?usp=sharing
 
-* ...
-# Portfolio
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9

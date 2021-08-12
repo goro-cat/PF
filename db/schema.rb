@@ -10,7 +10,90 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_09_120239) do
+ActiveRecord::Schema.define(version: 2021_08_09_123758) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "message"
+    t.string "chat_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.text "comment", default: "", null: false
+    t.string "comment_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.integer "type", default: 0, null: false
+    t.integer "animal", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maps", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "comment_id"
+    t.string "address"
+    t.float "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.integer "comment_id"
+    t.integer "chat_id"
+    t.integer "action"
+    t.boolean "cheacked", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "genre_id"
+    t.string "post_image_id"
+    t.text "text"
+    t.string "plase"
+    t.string "pet_name"
+    t.integer "pet_sex"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followered_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_rooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -18,14 +101,14 @@ ActiveRecord::Schema.define(version: 2021_08_09_120239) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "last_name", default: "", null: false
-    t.string "first_name", default: "", null: false
-    t.string "kana_last_name", default: "", null: false
-    t.string "kana_first_name", default: "", null: false
-    t.string "account_name", default: "", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "kana_last_name"
+    t.string "kana_first_name"
+    t.string "account_name"
     t.string "account_image_id"
-    t.string "address", default: "", null: false
-    t.string "phone_number", default: "", null: false
+    t.string "address"
+    t.string "phone_number"
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

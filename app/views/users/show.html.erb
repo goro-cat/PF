@@ -1,0 +1,20 @@
+<div class="container">
+  <h1>マイページ</h1>
+  <div clss=>
+    <h4>account_name<%= @user.account_name %></h4>
+    <h4></h4>
+  </div>
+  <div class="row">
+    <h4>投稿一覧</h4>
+    <% @posts.each do |post| %>
+    <div class="post-item">
+      <%= post.post_image_id %>
+      <%= post.plase %>
+      <%= post.pet_name %>
+      <%= post.pet_sex %>
+      <%= post.text %>
+      <%= post.user_id %>
+    </div>
+    <% end %>
+  </div>
+</div>

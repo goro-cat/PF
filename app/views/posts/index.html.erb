@@ -1,0 +1,16 @@
+<div class="cintainer">
+  <h1>捜索or保護一覧ページ</h1>
+  <%= link_to '投稿する', new_post_path %>
+
+  <!--捜索一覧と保護一覧で分ける--->
+  <% @posts.each do |post| %>
+    <div class="post-item">
+      <%= post.post_image_id %>
+      <%= post.plase %>
+      <%#= post.pet_name %>
+      <%#= post.pet_sex %>
+      <%#= post.text %>
+      <%#= post.user_id %>
+    </div>
+  <% end %>
+</div>

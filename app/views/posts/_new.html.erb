@@ -1,0 +1,22 @@
+ <%= form_with model: @genre, url:new_post_path do |f| %>
+　　<div>
+      <%= f.radio_button :category, :search %>
+      <%= f.label :category_search, '捜索中' %>
+      <%= f.radio_button :category, :protect %>
+      <%= f.label :category_protect, '保護中' %>
+　　</div>
+    <div>
+      <%#= f.radio_button :animal, :dog %>
+      <%#= f.label :animal_dog, '犬' %>
+      <%#= f.radio_button :animal, :cat %>
+      <%#= f.label :animal_cat, '猫' %>
+      <%#= f.radio_button :animal, :other %>
+      <%#= f.label :animal_other, 'その他' %>
+      <%= f.radio_button :animal, :dog %>
+      <%= f.label :animal, "犬", {value: :dog, style: "display: inline-block;"} %>
+      <%= f.radio_button :animal, :cat %>
+      <%= f.label :animal, "猫", {value: :cat, style: "display: inline-block;"} %>
+      <%= f.radio_button :animal, :other %>
+      <%= f.label :animal, "その他", {value: :other, style: "display: inline-block;"} %>
+    </div>
+  <% end %>

@@ -1,0 +1,6 @@
+<h1>チャット相手一覧</h1>
+<% @chat_users.each do |user| %>
+  <%= user.account_name %>
+  <%= user.account_image %>
+  <%= link_to 'チャットする', chats_show_path(user.id) %>
+<% end %>

@@ -5,12 +5,16 @@
   <!--捜索一覧と保護一覧で分ける--->
   <% @posts.each do |post| %>
     <div class="post-item">
-      <%= post.post_image_id %>
+      <%= attachment_image_tag post, :post_image, :fill, 200, 120, format: "jpg" %>
+      <h4>場所</h4>
       <%= post.plase %>
-      <%#= post.pet_name %>
-      <%#= post.pet_sex %>
-      <%#= post.text %>
-      <%#= post.user_id %>
+      <h4>名前</h4>
+      <%= post.pet_name %>
+      <h4>性別</h4>
+      <%= post.pet_sex %>
+      <h4>特徴・性格など</h4>
+      <%= post.text %>
+      <%= post.user.account_name %>
     </div>
   <% end %>
 </div>

@@ -1,1 +1,49 @@
-<h2></h2>
+<h2>マイページ　編集</h2>
+
+<div class="container">
+
+  <%= form_with model: @user, local: true do |f| %>
+    <label for="inputName">名前</label>
+    <%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"名前" %>
+    <%= f.text_field :first_name, autocomplete: "first_name" %>
+
+    <div class="field">
+      <%= f.label :"名前（カタカナ）" %>
+      <%= f.text_field :kana_last_name, autocomplete: "kana_last_name" %>
+      <%= f.text_field :kana_first_name, autocomplete: "kana_first_name" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :"住所" %>
+      <%= f.text_field :address, autocomplete: "address" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :"連絡先" %>
+      <%= f.text_field :phone_number, autocomplete: "phone_number" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :"メールアドレス" %>
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :"アカウント名" %>
+      <%= f.text_field :account_name, autocomplete: "account_name" %>
+    </div>
+
+      <%= attachment_image_tag @user, :account_image, :fill, 30, 30, fallback: "icon.jpeg" %>
+      <label for="inputimage">アカウント画像</label>
+      <%#= f.attachment_field :account_image, placeholder: "アカウント画像" %>
+      <%= f.attachment_field :account_image %>
+      
+      <div class="field">
+        <%= f.label :"自己紹介" %>
+        <%= f.text_area :introduction, autofocus: "introduction" %>
+      </div>
+
+    <!--class: "form-control-file user_image"-->
+    <%= f.submit "保存" %>
+  <% end %>
+</div>

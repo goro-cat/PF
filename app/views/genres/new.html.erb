@@ -1,0 +1,15 @@
+    <%= form_with model: @genre local: true do |f| %>
+    <h4>捜索 or 保護</h4>
+      <%= f.label :category_search, '捜索中' %>
+      <%= f.radio_button :category, :search %>
+      <%= f.label :category_protect, '保護中' %>
+      <%= f.radio_button :category, :protect %>
+
+    <h4>動物の種類</h4>
+      <%= f.label :animal_dog, '犬' %>
+      <%= f.radio_button :animal, :dog %>
+      <%= f.label :animal_cat, '猫' %>
+      <%= f.radio_button :animal, :cat %>
+      <%= f.label :animal_other, 'その他' %>
+      <%= f.radio_button :animal, :other %>
+    <% end %>

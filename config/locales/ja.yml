@@ -1,0 +1,11 @@
+ja:
+  enums:
+    genres:
+      category:
+        search: "捜索中"
+        protect: "保護中"
+      
+      animal:
+        dog: "犬"
+        cat: "猫"
+        other: "その"

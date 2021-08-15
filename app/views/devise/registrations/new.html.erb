@@ -35,12 +35,11 @@
       <%= f.label :"アカウント名" %><br />
       <%= f.text_field :account_name, autocomplete: "account_name" %>
     </div>
-
+    
     <div class="field">
-      <%#= f.label :image_id %><br />
-      <%#= f.attachment_field :account_image_id, class: "form-control-file user_image" %>
+      <%= f.label :"アカウント画像" %><br />
+      <%= f.attachment_field :account_image %>
     </div>
-
 
 
     <div class="field">

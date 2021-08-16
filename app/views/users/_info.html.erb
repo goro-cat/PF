@@ -8,9 +8,11 @@
 <% end %>
 <div>
   <% if current_user.following?(@user) %>
-    <%= link_to "フォローを解除する", unfollow_path(@user.id), method: :delete %>
+    <%= link_to "フォローを解除する", unfollow_path(@user.id), method: :delete %><br />
+    <%= link_to "チャットする", chat_path(@user.id) %>
   <% elsif current_user.id == @user.id %>
-    <%= link_to "フォロー一覧", follows_path %>
+    <%= link_to "フォロー一覧", follows_path %><br />
+    <%= link_to "チャットする", chats_path %>
   <% else %>
     <%= link_to "フォローする", follow_path(@user.id), method: :post %>
   <% end %>

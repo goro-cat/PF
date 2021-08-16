@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'chats/index'
-  get 'chats/show'
   get 'genres/new'
   get 'genres/edit'
   root to: 'homes#top'
@@ -14,11 +12,12 @@ Rails.application.routes.draw do
     #resource :relationships, only: [:create, :destroy]
     #get 'followings' => 'relationships#followings', as: 'followings'
     #get 'followers' => 'relationships#fllowers', as: 'followers'
-    resources :chats
   end
   get 'follow/index' => 'relationships#index', as: 'follows'
   post 'follow/:id' => 'relationships#create', as: 'follow'
   post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow'
+  
+  resources :chats, only: [:index, :show, :create]
 
   resources :posts
 

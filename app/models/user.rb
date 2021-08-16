@@ -12,9 +12,10 @@ class User < ApplicationRecord
    has_many :followed_user, class_name: "Relationship", foreign_key: "followed_user_id", dependent: :destroy
    has_many :follower_user, through: :followed_user, source: :follower
 
-   has_many :chats, dependent: :destroy
+  has_many :chats, dependent: :destroy
 
   has_many :posts, dependent: :destroy
+  
   #アカウント画像
   attachment :account_image
 

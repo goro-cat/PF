@@ -12,7 +12,8 @@
     <%= link_to "チャットする", chat_path(@user.id) %>
   <% elsif current_user.id == @user.id %>
     <%= link_to "フォロー一覧", follows_path %><br />
-    <%= link_to "チャットする", chats_path %>
+    <%= link_to "フォロワー一覧", follows_path %>
+    <%#= link_to "チャットする", chats_path %>
   <% else %>
     <%= link_to "フォローする", follow_path(@user.id), method: :post %>
   <% end %>

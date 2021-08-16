@@ -1,7 +1,9 @@
 class RelationshipsController < ApplicationController
   
   def index
-    @user = User.all
+    #@user = User.where.not(id: current_user.id)
+    user = User.find(params[:id])
+    @user = user.follower.all
   end
   
   def create

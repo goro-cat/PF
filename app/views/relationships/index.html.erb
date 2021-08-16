@@ -1,11 +1,12 @@
 <h1>フォロー一覧</h1>
 <div>
-  <% @user.where.not(id: current_user.id).each do |f| %>
+  <% @user.each do |user| %>
   <div>
-    <%= f.account_name %>
-    <%= f.account_image %>
-    <% if current_user.following?(f) %>
-      <%= link_to 'フォロー外す', unfollow_path(f.id), method: :POST %>
+    <%= user.account_name %>
+    <%= user.account_image %>
+    <% if current_user.following?(user) %>
+      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+      <%= link_to 'チャットする', chat_path(user.id) %>
     <%# else %>
       <%#= link_to 'フォローする', follow_path(f.id), method: :POST %>
     <% end %>

@@ -1,7 +1,8 @@
 class ChatsController < ApplicationController
   def index
+    @my_chats = current_user.chats
     @chat_partners = User.where.not(id: current_user.id)
-    #@chat_partners = @user.where(id: follower_id)
+
   end
 
   def show
@@ -10,17 +11,19 @@ class ChatsController < ApplicationController
     @chats_by_other = Chat.where(user_id: @chat_partner.id, partner_id: current_user.id)
     @chats = @chats_by_myself.or(@chats_by_other)
     @chats = @chats.order(:created_at)
-    @message = Chat.new
+
+
+    @chat_message = Chat.new
   end
 
   def create
-    chat = Chat.new(params[:id])
-    chat.save(chat_params)
+    chat = Chat.new(chat_params)
+    chat.save
     redirect_to request.referer
   end
 
   private
   def chat_params
-    params.require(:chat).permit(:message)
+    params.require(:chat).permit(:message, :chat_image)
   end
 end

@@ -1,50 +1,53 @@
 <div class="container">
   <h2>新規投稿</h2>
-   <%= form_with model: @genre, url: posts_path do |f| %>
-  　　<div>
-        <%= f.radio_button :category, :search %>
-        <%= f.label :category_search, '捜索中' %>
-        <%= f.radio_button :category, :protect %>
-        <%= f.label :category_protect, '保護中' %>
-  　　</div>
-      <div>
-        <%= f.radio_button :animal, :dog %>
-        <%= f.label :animal_dog, '犬' %>
-        <%= f.radio_button :animal, :cat %>
-        <%= f.label :animal_cat, '猫' %>
-        <%= f.radio_button :animal, :other %>
-        <%= f.label :animal_other, 'その他' %>
-        <%#= f.radio_button :animal, :dog %>
-        <%#= f.label :animal, "犬", {value: :dog, style: "display: inline-block;"} %>
-        <%#= f.radio_button :animal, :cat %>
-        <%#= f.label :animal, "猫", {value: :cat, style: "display: inline-block;"} %>
-        <%#= f.radio_button :animal, :other %>
-        <%#= f.label :animal, "その他", {value: :other, style: "display: inline-block;"} %>
-      </div>
+
+  <%= form_with model: @post, local: true do |f| %>
 
 
+  <div>
+    <%= f.radio_button :category, :search %>
+    <%= f.label :category_search, '捜索中' %>
+    <%= f.radio_button :category, :protect %>
+    <%= f.label :category_protect, '保護中' %>
+  </div>
 
-    <%= f.fields_for :post, @genre.posts.build do |t| %>
+  <div>
+    <%= f.radio_button :animal, :dog %>
+    <%= f.label :animal_dog, '犬' %>
+    <%= f.radio_button :animal, :cat %>
+    <%= f.label :animal_cat, '猫' %>
+    <%= f.radio_button :animal, :other %>
+    <%= f.label :animal_other, 'その他' %>
+  </div>
 
-    <h4>いなくなったor保護した　場所</h4>
-      <%= t.text_field :plase, placeholder: '○○県　○○市' %>
+  <h4>いなくなったor保護した　場所</h4>
+    <%= f.text_field :plase, placeholder: '○○県　○○市' %>
 
-    <h4>写真</h4>
-      <%= t.attachment_field :post_image %>
-    <h4>名前</h4>
-      <%= t.text_field :pet_name %>
+  <h4>写真</h4>
+    <%= f.attachment_field :post_images_images, multiple: true %>
+      <%#= image_tag(image.object.content) %>
+      <%#= picture.label :image %>
+      <%#= picture.file_field :image, multiple: true %>
+      <%#= picture.hidden_field :id, value: image.object.id %>
 
-    <h4>性別</h4>
-      <%= t.radio_button :pet_sex, :male %>
-      <%= t.label :pet_sex, "オス" %>
-      <%= t.radio_button :pet_sex, :female %>
-      <%= t.label :pet_sex, "メス" %>
-      <%= t.radio_button :pet_sex, :unknown %>
-      <%= t.label :pet_sex, "不明" %>
 
-    <h4>性格や特徴</h4>
-      <%= t.text_area :text %>
-      <% end %>
-      <%= f.submit '投稿' %>
-    <% end %>
+  <h4>名前</h4>
+    <%= f.text_field :pet_name %>
+
+  <h4>性別</h4>
+    <%= f.radio_button :pet_sex, :male %>
+    <%= f.label :pet_sex, "オス" %>
+    <%= f.radio_button :pet_sex, :female %>
+    <%= f.label :pet_sex, "メス" %>
+    <%= f.radio_button :pet_sex, :unknown %>
+    <%= f.label :pet_sex, "不明" %>
+
+  <h4>性格や特徴</h4>
+    <%= f.text_area :text %>
+
+
+    <%= f.submit '投稿' %>
+  <% end %>
+
+  <%= link_to request.referer do %><i class="fas fa-arrow-left">もどる/i><% end %>
 </div>

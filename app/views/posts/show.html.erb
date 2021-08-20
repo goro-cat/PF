@@ -1,6 +1,64 @@
 <h3>投稿詳細画面</h3>
 
 <div class="container">
-  <%= @post.pet_sex %>
-  
+  <div>
+    <div class="row">
+      <div class="col-5">
+        <% if @post.post_images.present? %>
+          <% @post.post_images.each do |image| %>
+            <%= attachment_image_tag image, :image, size: "200x200" %>
+          <% end %>
+        <% else %>
+          <%= image_tag '', size: '200x200' %>
+        <% end %>
+      </div>
+      <div class="col=7">
+        <%= @post.category_i18n %>
+        <%= @post.animal_i18n %>
+        <%= @post.pet_sex_i18n %>
+        <%= @post.pet_name %>
+        <%= @post.text %>
+        <%= @post.user.account_name %>
+      </div>
+    </div>
+
+    <% if @post.favorited_by?(current_user) && @post.user != current_user %>
+    <p>
+      <%= link_to post_favorites_path(@post.id), method: :delete do %>
+        ♥<%= @post.favorites.count %>
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to post_favorites_path(@post.id), method: :post do %>
+        ♡<%= @post.favorites.count %>
+      <% end %>
+    </p>
+    <% end %>
+
+  </div>
+
+  <div class="comment_index">
+    <% @post.comments.each do |post_comment| %>
+      <div>
+        <%= post_comment.comment %>
+        <%= post_comment.user.account_name %>
+        <% if post_comment.user == current_user %>
+          <div>
+            <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+
+
+  <div class="comment">
+    <%= form_with(model:[@post, @comment], local: true) do |comment| %>
+      <%= comment.text_area :comment, plaseholder: "コメント欄" %>
+      <%= comment.submit "送信" %>
+    <% end %>
+  </div>
+
 </div>

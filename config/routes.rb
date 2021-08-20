@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'genres/new'
-  get 'genres/edit'
   root to: 'homes#top'
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -16,9 +14,15 @@ Rails.application.routes.draw do
   get 'follow/index' => 'relationships#index', as: 'follows'
   post 'follow/:id' => 'relationships#create', as: 'follow'
   post 'unfollow/:id' => 'relationships#destroy', as: 'unfollow'
-  
+
   resources :chats, only: [:index, :show, :create]
 
-  resources :posts
+
+  resources :posts do
+    resources :comments, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
+
+  get 'search' => 'posts#search'
 
 end

@@ -73,8 +73,17 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick", github: 'refile/refile-mini_magick'
 
 gem 'bootstrap', '~> 4.5'
+
 gem 'jquery-rails'
 
 #親子選択
 #gem 'ancestry'
 
+#画像アップロード
+gem 'carrierwave', '~> 2.0'
+
+gem 'kaminari','~> 1.2.1'
+
+#enum日本語化
+gem 'rails-i18n'
+gem 'enum_help'

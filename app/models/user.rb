@@ -14,8 +14,11 @@ class User < ApplicationRecord
 
   has_many :chats, dependent: :destroy
 
+  #has_many :post_images
   has_many :posts, dependent: :destroy
-  
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
   #アカウント画像
   attachment :account_image
 

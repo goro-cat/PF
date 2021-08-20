@@ -1,20 +1,76 @@
 <div class="cintainer">
-  <h1>捜索or保護一覧ページ</h1>
-  <%= link_to '投稿する', new_post_path %>
+  <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
 
-  <!--捜索一覧と保護一覧で分ける--->
-  <% @posts.each do |post| %>
-    <div class="post-item">
-      <%= attachment_image_tag post, :post_image, :fill, 200, 120, format: "jpg" %>
-      <h4>場所</h4>
-      <%= post.plase %>
-      <h4>名前</h4>
-      <%= post.pet_name %>
-      <h4>性別</h4>
-      <%= post.pet_sex %>
-      <h4>特徴・性格など</h4>
+  <%# if @post.where(category: search ) %>
+　<div class="search-form">
+    <%= form_with url: posts_path, method: :get, local: true do |f| %>
+      <%= select_tag 'post_params', options_for_select([['---選択してください--', ''], ['捜索中', 'search'], ['保護中', 'protect']]) %>
+      <%= select_tag 'post_params', options_for_select([['---選択してください--', ''], ['犬', 'dog'], ['猫', 'cat'], ['その他', 'other']]) %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+
+  <div class="post-list">
+    <% @posts.each do |post| %>
+    <div>
       <%= post.text %>
-      <%= post.user.account_name %>
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+  <div>
+   <h1>捜索一覧</h1>
+    <%#= render posts/index, post:@post %>
+
+      <% @posts.each do |post| %>
+      <div class="post-item">
+        <%= link_to post_path(post.id) do %>
+          <%# if post.post_images.present? %>
+            <% post.post_images.each do |image| %>
+              <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+            <% #end %>
+          <% #else %>
+            <%#= image_tag '', size: '200x200' %>
+          <% end %>
+
+          <h4>場所</h4>
+          <%= post.plase %>
+          <h4>名前</h4>
+          <%= post.pet_name %>
+          <h4>性別</h4>
+          <%= post.pet_sex_i18n %>
+          <h4>特徴・性格など</h4>
+          <%= post.text %><br/>
+      <% end %>
+        <%#= post.user.account_name %>
+      </div>
+
+      <!--いいね-->
+      <% if post.favorited_by?(current_user) %>
+      <p>
+        <%= link_to post_favorites_path(post.id), method: :delete do %>
+          ♥<%= post.favorites.count %>
+        <% end %>
+      </p>
+      <% else %>
+      <p>
+        <%= link_to post_favorites_path(post.id), method: :post do %>
+          ♡<%= post.favorites.count %>
+        <% end %>
+      </p>
+      <% end %>
+    <% end %>
+
+    <%= paginate @posts %>
     </div>
-  <% end %>
+  <%# else %>
+    <h1>保護一覧</h1>
+    <%#= render posts/index, post:@post %>
+  <%# end %>
+
+
 </div>

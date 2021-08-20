@@ -1,15 +1,40 @@
-<h1>フォロー一覧</h1>
-<div>
-  <% @user.each do |user| %>
+<%# if currnent_user.following?(current_user) %>
+
+  <h1>フォロー一覧</h1>
   <div>
-    <%= user.account_name %>
-    <%= user.account_image %>
-    <% if current_user.following?(user) %>
-      <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <%= link_to 'チャットする', chat_path(user.id) %>
-    <%# else %>
-      <%#= link_to 'フォローする', follow_path(f.id), method: :POST %>
+    <% @user.each do |follow| %>
+    <div>
+      <%= follow.account_name %>
+      <%= follow.account_image %>
+      <% if current_user.following?(follow) %>
+        <%= link_to 'フォロー外す', unfollow_path(follow.id), method: :POST %>
+        <%= link_to 'チャットする', chat_path(follow.id) %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(follow.id), method: :POST %>
+      <% end %>
+    </div>
+    <% end %>
+
+    <%= paginate @user %>
+  </div>
+
+
+<%# else %>
+
+  <h1>フォロワー一覧</h1>
+  <div>
+    <% @user.each do |follower| %>
+    <div>
+      <%= follower.account_name %>
+      <%= follower.account_image %>
+      <% if current_user.following?(follower) %>
+        <%= link_to 'フォロー外す', unfollow_path(follower.id), method: :POST %>
+        <%= link_to 'チャットする', chat_path(follower.id) %>
+      <% else %>
+        <%= link_to 'フォローする', follow_path(follower.id), method: :POST %>
+      <% end %>
+    </div>
     <% end %>
   </div>
-  <% end %>
-</div>
+
+<%# end %>

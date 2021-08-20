@@ -6,11 +6,11 @@
     </div>
 
     <div class="col-8">
-      <%= link_to '投稿する', new_post_path %>
+      <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
       <h4>投稿一覧</h4>
       <% @posts.each do |post| %>
       <div class="post-item">
-        <%= post.post_image_id %>
+        <%#= attachment_image_tag post, :post_image, :fill, 200, 120, format: "jpg" %>
         <%= post.plase %>
         <%= post.pet_name %>
         <%= post.pet_sex %>

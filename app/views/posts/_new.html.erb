@@ -1,22 +1,72 @@
- <%= form_with model: @genre, url:new_post_path do |f| %>
-　　<div>
-      <%= f.radio_button :category, :search %>
-      <%= f.label :category_search, '捜索中' %>
-      <%= f.radio_button :category, :protect %>
-      <%= f.label :category_protect, '保護中' %>
-　　</div>
-    <div>
-      <%#= f.radio_button :animal, :dog %>
-      <%#= f.label :animal_dog, '犬' %>
-      <%#= f.radio_button :animal, :cat %>
-      <%#= f.label :animal_cat, '猫' %>
-      <%#= f.radio_button :animal, :other %>
-      <%#= f.label :animal_other, 'その他' %>
-      <%= f.radio_button :animal, :dog %>
-      <%= f.label :animal, "犬", {value: :dog, style: "display: inline-block;"} %>
-      <%= f.radio_button :animal, :cat %>
-      <%= f.label :animal, "猫", {value: :cat, style: "display: inline-block;"} %>
-      <%= f.radio_button :animal, :other %>
-      <%= f.label :animal, "その他", {value: :other, style: "display: inline-block;"} %>
-    </div>
+
+  <%= form_with model: @form, url: posts_path do |f| %>
+  　　<div>
+        <%= f.radio_button :category, :search %>
+        <%= f.label :category_search, '捜索中' %>
+        <%= f.radio_button :category, :protect %>
+        <%= f.label :category_protect, '保護中' %>
+  　　</div>
+      <div>
+        <%= f.radio_button :animal, :dog %>
+        <%= f.label :animal_dog, '犬' %>
+        <%= f.radio_button :animal, :cat %>
+        <%= f.label :animal_cat, '猫' %>
+        <%= f.radio_button :animal, :other %>
+        <%= f.label :animal_other, 'その他' %>
+        <%#= f.radio_button :animal, :dog %>
+        <%#= f.label :animal, "犬", {value: :dog, style: "display: inline-block;"} %>
+        <%#= f.radio_button :animal, :cat %>
+        <%#= f.label :animal, "猫", {value: :cat, style: "display: inline-block;"} %>
+        <%#= f.radio_button :animal, :other %>
+        <%#= f.label :animal, "その他", {value: :other, style: "display: inline-block;"} %>
+      </div>
+
+
+
+    <%#= f.fields_for :post, @genre.posts.build, local: true do |t| %>
+
+    <h4>いなくなったor保護した　場所</h4>
+      <%= f.text_field :plase, placeholder: '○○県　○○市' %>
+
+    <h4>写真</h4>
+      <%= f.attachment_field :post_image %>
+    <h4>名前</h4>
+      <%= f.text_field :pet_name %>
+
+    <h4>性別</h4>
+      <%= f.radio_button :pet_sex, :male %>
+      <%= f.label :pet_sex, "オス" %>
+      <%= f.radio_button :pet_sex, :female %>
+      <%= f.label :pet_sex, "メス" %>
+      <%= f.radio_button :pet_sex, :unknown %>
+      <%= f.label :pet_sex, "不明" %>
+
+    <h4>性格や特徴</h4>
+      <%= f.text_area :text %>
+      <%# end %>
+     
+      <%= f.submit '投稿' %>
+    <% end %>
+    
+    
+    
+    
+    
+    <%= form_with model:@post, local:true do |t| %>
+    
+  
+    <%= t.text_field :plase, placeholder: '○○県　○○市' %>
+    
+    <%= t.text_field :pet_name %>
+    
+    <%= t.radio_button :pet_sex, :male %>
+    <%= t.label :pet_sex, "オス" %>
+    <%= t.radio_button :pet_sex, :female %>
+    <%= t.label :pet_sex, "メス" %>
+    <%= t.radio_button :pet_sex, :unknown %>
+    <%= t.label :pet_sex, "不明" %>
+    
+    <%= t.text_area :text %>
+    
+    <%= t.submit '投稿' %>
   <% end %>

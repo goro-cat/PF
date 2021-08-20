@@ -7,7 +7,7 @@
         <% if chat.user_id == current_user.id %>
           <div class="my_message">
             <p><%= chat.message %></p>
-            <p><%= attachment_image_tag chat, :chat_image %></p>
+            <p><%= attachment_image_tag chat, :chat_image, :fill, 200, 120, format: "jpg" %></p>
           </div>
         <% else %>
           <div class="partner_message">

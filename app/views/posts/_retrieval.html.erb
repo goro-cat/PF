@@ -1,0 +1,8 @@
+<div class="search-form">
+  <%= form_with url: retrieval_path, method: :get, local: true do |f| %>
+    <%#= f.select :category, options_for_select([['---選択してください--', ''], ['捜索中', 'search'], ['保護中', 'protect']]) %>
+    <%#= f.select :animal, options_for_select([['---選択してください--', ''], ['犬', 'dog'], ['猫', 'cat'], ['その他', 'other']]) %>
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.submit "検索", class: 'btn btn-primary' %>
+  <% end %>
+</div>

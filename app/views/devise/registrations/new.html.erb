@@ -35,12 +35,6 @@
       <%= f.label :"アカウント名" %><br />
       <%= f.text_field :account_name, autocomplete: "account_name" %>
     </div>
-    
-    <div class="field">
-      <%= f.label :"アカウント画像" %><br />
-      <%= f.attachment_field :account_image %>
-    </div>
-
 
     <div class="field">
       <%= f.label :"パスワード" %>
@@ -56,7 +50,7 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "登録する" %>
+      <%= f.submit "登録する", class: 'btn-sm btn-primary border rounded' %>
     </div>
   <% end %>
 

@@ -15,6 +15,44 @@
  */
  @import "bootstrap";
  
+ .footer{
+  
+ }
+
  .footer_main{
   text-align: center;
  }
+
+ .card{
+  margin: 0 auto 60px;
+  max-width: 376px;
+  height: 370px;
+ }
+
+ .card-body p{
+  text-align: left;
+ }
+
+
+.top_container{
+  height: 500px;
+}
+
+.main{
+background-image: image-url('bluen.jpg');
+}
+
+.post-btn{
+ position: absolute;
+ top: 0;
+ right: 0;
+}
+
+.nothing{
+ color: red;
+}
+
+.form-container{
+ margin: px auto;
+ background-color: #fff;
+}

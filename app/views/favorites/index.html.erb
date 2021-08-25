@@ -1,0 +1,12 @@
+<div class="container">
+  <div><!---検索・ユーザ情報--></div>
+  <div>
+    <h3><%= current_user.account_name %>さんのいいね一覧</h3>
+    <!--current_userがいいねした投稿-->
+    <% if @posts.favorited_by?(current_user) %>
+      <%= render 'posts/list', posts:@posts %>
+    <% else %>
+      <p>いいね　した投稿はありません</p>
+    <% end %>
+  </div>
+</div>

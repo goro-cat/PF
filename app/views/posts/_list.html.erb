@@ -1,0 +1,31 @@
+<!--投稿一覧内容-->
+  <div class="row">
+    <% if posts.present? %>
+      <% posts.each do |post| %>
+      <div class="card" style="width:20rem">
+        <img class="card-img-top">
+        <%= attachment_image_tag post.post_images[0], :image, class: 'rounded', fallvack: "logo.jpg" %>
+
+        <div class="card-body">
+          <h5 class="card-title"><%= post.category %> / <%= post.plase %></h5>
+          <table class="table">
+            <tr>
+              <td><%= attachment_image_tag post.user, :account_image, size: "50x50", class: 'rounded-circle', fallvack: "icon.jpeg" %></td>
+              <td>
+                <div id="favorites_buttons_<%= post.id %>">
+                  <%= render partial: 'favorites/favorite', locals: {post: post} %>
+                </div>
+              </td>
+              <td><%= post.comments.count %>コメント</td>
+              <td>
+                <%= link_to "詳細", post_path(post), class: 'btn btn-primary' %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <% end %>
+    <% else %>
+      <p class="nothing">投稿はありません</p>
+    <% end %>
+  </div>

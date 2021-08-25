@@ -1,11 +1,17 @@
 class CommentsController < ApplicationController
-
   def create
     post_comment = Post.find(params[:post_id])
-    comment = current_user.comments.new(comment_params)
-    comment.post_id = post_comment.id
-    comment.save
-    redirect_to post_path(post_comment)
+    @comment = current_user.comments.new(comment_params)
+    @comment.post_id = post_comment.id
+    @post = @comment.post
+
+    if @comment.save
+      # post.rbに記述したメソッドで通知を発射！
+      @post.create_notification_comment!(current_user, @comment.id)
+      redirect_to request.referer
+    else
+      redirect_to post_path(post_comment)
+    end
   end
 
   def destroy
@@ -18,5 +24,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:post_id, :comment)
   end
-
 end

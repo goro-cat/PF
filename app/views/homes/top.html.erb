@@ -1,21 +1,28 @@
-<div class="container">
-  <div class="top_image"><!--画像時間によってスライドさせる-->
+<div class="top_container">
+  
+  <div id="image"><!--画像時間によってスライドさせる-->
+    <div style="background-image"><%= image_tag 'dog1.jpg' %></div>
+    <div style="background-image"><%= image_tag 'cat1.jpg' %></div>
+    <div style="background-image"><%= image_tag 'dogs.jpg' %></div>
   </div>
-  <div class="main">
-    <h1>まよほご掲示板</h1>
+  
+</div>
 
-    <p>いなくなってしまったペットの情報</br>
-       保護した動物の情報を持ち寄ろう
-    </p>
 
-    <div class="search">
-      <h4>捜索中</h4>
-      <%#= @search_list.text %>
+<div class="top-main">
+  <h1>まよほご掲示板</h1>
 
+  <p>いなくなってしまったペットの情報</br>
+     保護した動物の情報を持ち寄ろう
+  </p>
+</div>
+<div class="post-items">
+    <div class="post_image post">
+      <h3 class="title">捜索投稿</h3>
+      <%= render 'posts/list', posts: @search_post %>
+      <%= link_to "もっと見る", search_path %>
+      <h3 class="title">保護投稿</h3>
+      <%= render 'posts/list', posts: @protect_post %>
+      <%= link_to "もっと見る", protect_path %>
     </div>
-    <div class="protect">
-      <h4>保護中</h4>
-
-    </div>
-  </div>
 </div>

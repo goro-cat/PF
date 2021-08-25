@@ -1,0 +1,9 @@
+<div class="">
+  <%= render 'posts/retrieval', keyword: @keyword %>
+  <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
+</div>
+
+<p>保護一覧</p>
+
+  <%= render 'posts/list', posts: @posts %>
+

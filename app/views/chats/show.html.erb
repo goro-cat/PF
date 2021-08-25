@@ -1,4 +1,4 @@
-<h3><%= "#{@chat_partner.account_name}" + "　さんとのチャットルームです" %></h3>
+<h3 class="title"><%= "#{@chat_partner.account_name}" + "　さんとのチャットルームです" %></h3>
 <div class="row">
   <div class="col-2"></div>
   <div class="col-8">
@@ -6,35 +6,36 @@
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
           <div class="my_message">
-            <p><%= chat.message %></p>
-            <p><%= attachment_image_tag chat, :chat_image, :fill, 200, 120, format: "jpg" %></p>
+            <tr>
+              <td>
+                <%= chat.message %>
+                <%= attachment_image_tag chat, :chat_image, :fill, 200, 120, format: "jpg" %>
+              </td>
+              <td><%= attachment_image_tag chat.user, :account_image, size: "80x80", class: 'rounded-circle pr-0', fallback: "icon.jpeg" %></td>
+            </tr>
           </div>
         <% else %>
           <div class="partner_message">
-            <p><%= chat.message %></p>
-            <p><%= attachment_image_tag chat, chat_image %></p>
+            <tr>
+              <td><%= attachment_image_tag chat.user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %></td>
+              <td>
+                <%= chat.message %>
+                <%= attachment_image_tag chat, :chat_image, size: "200x120" %>
+              </td>
+            </tr>
           </div>
         <% end %>
       <% end %>
     </div>
-
+  </div>
+  <div class="col-2"></div>
+  <div class="form">
     <%= form_with model:@chat_message do |f| %>
       <%= f.text_field :message %>
       <%= f.attachment_field :chat_image %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :partner_id, :value => @chat_partner.id %>
-      <%= f.submit '送信' %>
+      <%= f.submit '送信', class: 'btn btn-primary' %>
     <% end %>
-
-    <!--
-    <form id="send-form">
-      <input type="text" id="message" placeholder="入力欄" style="width:30%;">
-      <input type="submit" value="送信" id="send">
-      <input id="current_user_id" type="hidden" value= "<%#= current_user.id %>">
-      <input id="partner_id" type="hidden" value= "<%#= @chat_partner.id %>">
-    </form>
-    -->
-
   </div>
-  <div class="col-2"></div>
 </div>

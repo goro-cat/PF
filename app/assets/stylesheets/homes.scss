@@ -2,8 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.top_image{
+.image1 {
   background-image: image-url("dog1.jpg");
-  height: 400px;
-  width: auto;
+}
+.image2 {
+  background-image: image-url("cat1.jpg");
+}
+.image3 {
+  background-image: image-url("dogs.jpg");
+}
+#container{
+  height: 500px;
+}
+
+.top-main{
+  background-color: #fff;
+  text-align: center;
+}
+
+.title{
+  
 }

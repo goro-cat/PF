@@ -1,58 +1,70 @@
 <h2>マイページ　編集</h2>
-
-<div class="container">
+<div class="contener">
   <%= form_with model: @user, local: true do |f| %>
-    <div class="table">
-      <tr>
-        <td><label for="inputName">名前</label></td>
-        <td>
-          <%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"名前" %>
-          <%= f.text_field :first_name, autocomplete: "first_name" %>
-        </td>
-      </tr>
-      <tr>
-        <td> <%= f.label :"名前（カタカナ）" %></td>
-        <td>
-          <%= f.text_field :kana_last_name, autocomplete: "kana_last_name" %>
-          <%= f.text_field :kana_first_name, autocomplete: "kana_first_name" %>
-        </td>
-      </tr>
-      <tr>
-        <td><%= f.label :"住所" %></td>
-        <td><%= f.text_field :address, autocomplete: "address" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"連絡先" %></th>
-        <td><%= f.text_field :phone_number, autocomplete: "phone_number" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"メールアドレス" %></th>
-        <td><%= f.email_field :email, autocomplete: "email" %></td>
-      </tr>
-      <tr>
-        <th><%= f.label :"アカウント名" %></th>
-        <td><%= f.text_field :account_name, autocomplete: "account_name" %></td>
-      </tr>
-      <tr>
-        <th><label for="inputimage">アカウント画像</label><br />
-            <%= attachment_image_tag @user, :account_image, :fill, 30, 30, fallback: "icon.jpeg" %>
-        </th>
-        <td>
-          <%= f.attachment_field :account_image %>
-        </td>
-      </tr>
-        
-        <div class="field">
-          <%= f.label :"自己紹介" %>
-          <%= f.text_area :introduction, autofocus: "introduction" %>
-        </div>
-
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="inputName" class="col-sm-2">名前</label>
+      <div class="col-sm-10">
+        <%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"名前", class: 'border rounded' %>
+        <%= f.text_field :first_name, autocomplete: "first_name", class: 'border rounded' %>
+      </div>
     </div>
-
-  
     
-    <!--class: "form-control-file user_image"-->
-    <%= f.submit "保存" %>
+    <div class="form-group">
+      <%= f.label :"名前（カタカナ）" %>
+      <div class="col-sm-10">
+        <%= f.text_field :kana_last_name, autocomplete: "kana_last_name", class: 'border rounded' %>
+        <%= f.text_field :kana_first_name, autocomplete: "kana_first_name", class: 'border rounded' %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :"住所" %>
+      <div class="col-sm-10">
+      <%= f.text_field :address, autocomplete: "address", class: 'border rounded' %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :"連絡先" %>
+      <div class="col-sm-10">
+      <%= f.text_field :phone_number, autocomplete: "phone_number", class: 'border rounded' %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :"メールアドレス" %>
+      <div class="col-sm-10">
+      <%= f.email_field :email, autocomplete: "email", class: 'border rounded' %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :"アカウント名" %>
+      <div class="col-sm-10">
+      <%= f.text_field :account_name, autocomplete: "account_name", class: 'border rounded' %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputimage">アカウント画像</label>
+      <div class="col-sm-10">
+        <%= attachment_image_tag @user, :account_image, :fill, 30, 30, class: 'border rounded', fallback: "icon.jpeg" %>
+        <%= f.attachment_field :account_image %>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :"自己紹介" %>
+      <%= f.text_area :introduction, autofocus: "introduction", size: '40x2', class: 'border rounded' %>
+    </div>
+    
+    <div class="form-group">
+      <%= link_to request.referer, class: 'btn btn-primary' do %><i class="fas fa-arrow-left">もどる</i><% end %>
+      <%= f.submit "保存", class: 'btn btn-primary' %>
+    </div>
+    
+  </form>
   <% end %>
-  <%= link_to request.referer do %><i class="fas fa-arrow-left">もどる</i><% end %>
 </div>
+

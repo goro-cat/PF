@@ -1,20 +1,25 @@
 <!--ユーザ情報-->
-<%= attachment_image_tag @user, :account_image, :fill, 60, 60, format: 'jpeg', fallback: "icon.jpeg" %>
-<%= @user.account_name %><br />
-<%= @user.introduction %>
-<h4></h4>
-<% if @user.id == current_user.id%>
-  <%= link_to '編集する', edit_user_path(@user.id) %><br />
-  <%= link_to 'チャットする', chats_path %>
-<% end %>
-<div>
-  <% if current_user.following?(@user) %>
-    <%= link_to "フォローを解除する", unfollow_path(@user.id), method: :post %><br />
-    <%= link_to "チャットする", chat_path(@user.id) %>
-  <% elsif current_user.id == @user.id %>
-    <%= link_to "フォロー一覧", follows_path %><br />
-    <%= link_to "フォロワー一覧", follows_path %>
+<div class="info-contaner border rounded">
+  <%= attachment_image_tag user, :account_image, size: "100x100", class: 'rounded-circle', fallback: "icon.jpeg" %>
+  <%= user.account_name %><br />
+  <div>
+     <%= user.introduction %>
+  </div>
+  <div>
+  <% if user.id == current_user.id %>
+    <%= link_to '編集する', edit_user_path(user.id) %><br />
+    <%= link_to 'チャットする', chats_path %><br />
+    <%= link_to 'いいね一覧', favorites_user_path(user.id) %><br />
+    <%= link_to '通知', notifications_path %><br />
+    <%= link_to "フォロー一覧", user_followings_path(user.id) %><br />
+    <%= link_to "フォロワー一覧", user_followers_path(user.id) %>
+
+
+  <% elsif current_user.following?(user) %>
+    <%= link_to "フォローを解除する", user_relationships_path(user.id), method: :delete %><br />
+    <%= link_to "チャットする", chat_path(user.id) %>
   <% else %>
-    <%= link_to "フォローする", follow_path(@user.id), method: :post %>
+    <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
   <% end %>
+  </div>
 </div>

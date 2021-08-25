@@ -13,10 +13,33 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery
 
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 
 //= require_tree .
+document.addEventListener("turbolinks:load"
+, function () {
+  $(document).ready(function (){
+    $("#image").skippr({
+      transition : 'slide',
+      speed: 1000,
+      easing: 'easeOutQuart',
+      navType: 'block',
+      childrenElementtype: 'div',
+      arrows: true,
+      autoPlay: true,
+      autoPlayDuration: 3000,
+      keyboardOnAlways: true,
+      hidePrevious: false
+    });
+  });
+});
 
+
+//var title = "javascript使えてる？";
+//alert(title);
+
+$('#post_index_new').html("<%= escape_javascript(render%>")

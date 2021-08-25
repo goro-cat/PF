@@ -3,11 +3,10 @@ class PostsForm
   include ActiveModel::Attributes
   extend CarrierWave::Mount
 
-
-  #mount_uploader :image, PostImageUploader
+  # mount_uploader :image, PostImageUploader
   attr_accessor :images
 
-  #attributeメソッドでparamsで渡されるパラメータ名を並る。それ以外の属性はattr_accessorで作ります。
+  # attributeメソッドでparamsで渡されるパラメータ名を並る。それ以外の属性はattr_accessorで作ります。
   attribute :user_id, :integer
 
   attribute :text, :string
@@ -19,45 +18,45 @@ class PostsForm
 
   attribute :category, :integer
   attribute :animal, :integer
-  
-  
+
   def initialize(post = Post.new)
     @post = post
     self.attributes = @post.attributes if @post.persisted?
   end
-  
+
   def save
     return false if invalid?
+
     if @post.persisted?
       @post.images = images if images.present?
       @post.save!
     else
       post = Post.new(user_id: user_id,
-                            text: text)
+                      text: text)
       post.pictures = pictures if pictures.present?
       post.save!
     end
   end
-  
-  #def save
-    # 有効でない値の場合はこの時点でfalseを返す
-   # return false if invalid?
 
-    # トランザクションを使用し、データを保存
-    #ActiveRecord::Base.transaction do
+  # def save
+  # 有効でない値の場合はこの時点でfalseを返す
+  # return false if invalid?
 
-     # post = Post.new(post_params)
+  # トランザクションを使用し、データを保存
+  # ActiveRecord::Base.transaction do
 
-      #post.save!
+  # post = Post.new(post_params)
 
-      #post.each do |image|
-        #post.post_images.create!(image: image)
-      #end
+  # post.save!
 
-    #end
-    # saveメソッドの返り値はboolean型を返すためtrueを明示
+  # post.each do |image|
+  # post.post_images.create!(image: image)
+  # end
+
+  # end
+  # saveメソッドの返り値はboolean型を返すためtrueを明示
   #  true
-  #end
+  # end
 
   def update
     @form = PostsForm.new(post_params, post: @post)
@@ -74,13 +73,7 @@ class PostsForm
     @post = current_user.posts.find(params[:id])
   end
 
-
-
-
   private
-
-
-
 
   def post_params
     {
@@ -93,5 +86,4 @@ class PostsForm
       animal: animal
     }
   end
-
 end

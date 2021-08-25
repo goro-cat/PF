@@ -1,0 +1,13 @@
+<!--コメント-->
+
+<% post.comments.each do |post_comment| %>
+  <div>
+    <%= post_comment.comment %>
+    <%= post_comment.user.account_name %>
+    <% if post_comment.user == current_user %>
+      <div>
+        <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

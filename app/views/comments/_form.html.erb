@@ -1,0 +1,6 @@
+<!--コメント投稿フォーム-->
+
+<%= form_with(model:[post, comment]) do |comment| %>
+  <%= comment.text_area :comment, plaseholder: "コメント欄" %>
+  <%= comment.submit "送信" %>
+<% end %>

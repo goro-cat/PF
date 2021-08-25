@@ -2,7 +2,6 @@ class ChatsController < ApplicationController
   def index
     @my_chats = current_user.chats
     @chat_partners = User.where.not(id: current_user.id)
-
   end
 
   def show
@@ -11,7 +10,6 @@ class ChatsController < ApplicationController
     @chats_by_other = Chat.where(user_id: @chat_partner.id, partner_id: current_user.id)
     @chats = @chats_by_myself.or(@chats_by_other)
     @chats = @chats.order(:created_at)
-
 
     @chat_message = Chat.new
   end
@@ -23,6 +21,7 @@ class ChatsController < ApplicationController
   end
 
   private
+
   def chat_params
     params.require(:chat).permit(:user_id, :partner_id, :message, :chat_image)
   end

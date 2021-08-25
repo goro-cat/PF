@@ -1,0 +1,20 @@
+<!--自分の投稿に対するコメントは表示しない-->
+<div class="container">
+  <h3>通知</h3>
+  <%= link_to notifications_destroy_path, method: :delete do %>
+    <i class="fas fa-trash" style="color: black;"></i>
+    <h7 style="color: black;">全削除</h7>
+  <% end %>
+  <hr>
+
+  <% if @notifications.exists? %>
+
+    <% @notifications.each do |notification| %>
+      <% notification.update_attributes(cheacked: true) %>
+      <%= render notification %>
+    <% end %>
+
+  <% else %>
+    <p class="nothing">通知はありません</p>
+  <% end %>
+</div>

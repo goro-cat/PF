@@ -8,9 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up,
-                                      keys: %i[lase_name first_name kana_last_name kana_first_name address
-                                               account_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:lase_name, :first_name, :kana_last_name, :kana_first_name, :address, :account_name] )
   end
 
   def after_sign_in_path_for(_resource)

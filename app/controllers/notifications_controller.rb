@@ -1,4 +1,6 @@
 class NotificationsController < ApplicationController
+  
+  
   def index
     # @notificaations = current_user.passive_notifications
     # すべての通知の中で、visited_idが自分でfalseのものをとってくる

@@ -60,10 +60,10 @@ class PostsController < ApplicationController
   end
 
   def retrieval
-    @posts = Post.retrieval(params[:keyword]).page(params[:page]).per(5)
+    @posts = Post.retrieval(params[:keyword])
 
-    @search_posts = @posts.where(category: 0)
-    @protect_posts = @posts.where(category: 1)
+    @search_posts = @posts.where(category: 0).page(params[:page]).per(5)
+    @protect_posts = @posts.where(category: 1).page(params[:page]).per(5)
 
     @keyword = params[:keyword]
   end

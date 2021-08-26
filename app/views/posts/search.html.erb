@@ -1,7 +1,13 @@
-<div class="">
-  <%= render 'posts/retrieval', keyword: @keyword %>
-  <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
-</div>
+<div class="m-5">
+  <div class="top-content pb-3">
+    <%= render 'posts/retrieval', keyword: @keyword %>
+    <%= link_to new_post_path do %>
+      <i class="fas fa-plus-circle">投稿する</i>
+    <% end %>
+  </div>
 
-<p>捜索一覧</p>
-  <%= render 'posts/list', posts: @posts %>
+  <div class="container bg-white">
+    <h3 class="title">捜索投稿一覧</h3>
+    <%= render 'posts/list', posts: @posts %>
+  </div>
+</div>

@@ -1,28 +1,36 @@
 <div class="top_container">
-  
   <div id="image"><!--画像時間によってスライドさせる-->
     <div style="background-image"><%= image_tag 'dog1.jpg' %></div>
     <div style="background-image"><%= image_tag 'cat1.jpg' %></div>
     <div style="background-image"><%= image_tag 'dogs.jpg' %></div>
   </div>
-  
 </div>
 
 
-<div class="top-main">
-  <h1>まよほご掲示板</h1>
+<div class="top-main height:500px bg-white">
+  <h1 class="title p-5 h-100">まよほご掲示板</h1>
 
-  <p>いなくなってしまったペットの情報</br>
-     保護した動物の情報を持ち寄ろう
+  <h3 class="font">
+    <span>まよ</span>い　犬 <br />
+    <span>ほご</span>　猫 <br />
+       の <br />
+    情報を集める　<span>掲示板</span>　です
+  </h3>
+
+  <p class="font">いなくなってしまったペットの情報</br>
+     保護した動物の情報を持ち寄ろう<br />
+     <br />
+     見かけた投稿にはコメント<br />
+     気になる保護投稿にはフォローしてチャット<br />
+     <br />
+     <br />
   </p>
 </div>
-<div class="post-items">
-    <div class="post_image post">
-      <h3 class="title">捜索投稿</h3>
-      <%= render 'posts/list', posts: @search_post %>
-      <%= link_to "もっと見る", search_path %>
-      <h3 class="title">保護投稿</h3>
-      <%= render 'posts/list', posts: @protect_post %>
-      <%= link_to "もっと見る", protect_path %>
-    </div>
+<div class="post_image post mt-5 mb-5 bg-white">
+  <h3 class="title border-bottom">捜索投稿</h3>
+  <%= render 'posts/list', posts: @search_post %>
+  <div class="more"><%= link_to "もっと見る >>", search_path %></div>
+  <h3 class="title border-bottom">保護投稿</h3>
+  <%= render 'posts/list', posts: @protect_post %>
+  <div class="more"><%= link_to "もっと見る >>", protect_path %></div>
 </div>

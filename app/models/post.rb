@@ -22,12 +22,7 @@ class Post < ApplicationRecord
 
   # キーワード検索のメソッド
   def self.retrieval(keyword)
-    if search
-      where(['text like? OR  plase like? OR pet_name like?', "%#{keyword}%", "%#{keyword}%",
-             "%#{keyword}%"])
-    else
-      all
-    end
+    where(["text like? OR  plase like? OR pet_name like?", "%#{keyword}%",  "%#{keyword}%", "%#{keyword}%"])
   end
 
   # いいねの通知機能

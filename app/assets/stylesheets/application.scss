@@ -14,9 +14,13 @@
  *= require_self
  */
  @import "bootstrap";
- 
+ @font-face{
+  font-family: 'Jiyucho';
+  src: font-url('/assets/Jiyucho.otf');
+ }
+
  .footer{
-  
+
  }
 
  .footer_main{
@@ -38,6 +42,10 @@
   height: 500px;
 }
 
+.image{
+ padding: 20px auto;
+}
+
 .main{
 background-image: image-url('bluen.jpg');
 }
@@ -55,4 +63,21 @@ background-image: image-url('bluen.jpg');
 .form-container{
  margin: px auto;
  background-color: #fff;
+}
+
+
+.title{
+  font-family: 'Jiyucho';
+}
+
+.font{
+ font-family: 'Jiyucho';
+}
+
+.top-content{
+ text-align: right;
+}
+
+.more{
+ text-align: right;
 }

@@ -1,20 +1,20 @@
 <!--自分の投稿に対するコメントは表示しない-->
-<div class="container">
-  <h3>通知</h3>
+<div class="container pb-5">
+  <h3 class="title">通知</h3>
   <%= link_to notifications_destroy_path, method: :delete do %>
     <i class="fas fa-trash" style="color: black;"></i>
     <h7 style="color: black;">全削除</h7>
   <% end %>
   <hr>
+  <div class="bg-white border rounded">
+    <% if @notifications.exists? %>
+      <% @notifications.each do |notification| %>
+        <% notification.update_attributes(cheacked: true) %>
+        <%= render notification %>
+      <% end %>
 
-  <% if @notifications.exists? %>
-
-    <% @notifications.each do |notification| %>
-      <% notification.update_attributes(cheacked: true) %>
-      <%= render notification %>
+    <% else %>
+      <p class="nothing">通知はありません</p>
     <% end %>
-
-  <% else %>
-    <p class="nothing">通知はありません</p>
-  <% end %>
+  </div>
 </div>

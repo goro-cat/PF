@@ -1,6 +1,6 @@
 <h3>投稿詳細画面</h3>
 
-<div class="container">
+<div class="container mb-5">
   <div>
     <div class="row">
       <div class="col-3">
@@ -12,43 +12,61 @@
             <%= attachment_image_tag image, :image, class: 'rounded', size: "200x200" %>
           <% end %>
         <% else %>
-          <%= image_tag '', size: '200x200' %>
-          <%= attachment_image_tag @user, :account_image, size: "60x60", fallback: "icon.jpeg" %>
+          <%= image_tag "logo.jpg" %>
         <% end %>
       </div>
       <div class="col=5 bg-white border rounded">
         <div>
           <% if @post.user == current_user %>
-            <%= link_to '編集', edit_post_path(@post) %>/
-            <%= link_to '削除', post_path(@post), method: :delete %>
+            <%= link_to '編集', edit_post_path(@post) %> /
+            <%= link_to '削除', post_path(@post), class: 'text-danger', method: :delete %>
           <% end %>
         </div>
-        <%= @post.category_i18n %>
-        <%= @post.animal_i18n %><br />
-        <%= @post.pet_sex_i18n %><br />
-        <%= @post.pet_name %><br />
-        <%= @post.text %><br />
-        <%= @post.user.account_name %>
-        <div id="favorites_buttons_<%= @post.id %>">
-          <%= render 'favorites/favorite', post: @post %>
-        </div>
+        <table class="table font">
+          <tr>
+            <td>投稿日</td>
+            <td><%= @post.created_at.strftime('%Y年%m月%d日') %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= @post.category %></td>
+            <td><%= @post.animal %></td>
+            <td><%= @post.pet_sex %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="2"><%= @post.pet_name %></td>
+          </tr>
+          <tr>
+            <td colspan="3"><%= @post.text %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td id="favorites_buttons_<%= @post.id %>">
+              <%= render 'favorites/favorite', post: @post %>
+            </td>
+            <td></td>
+          </tr>
+        </table>
       </div>
     </div>
-   
+
 
   </div>
   <div class="row">
     <div class="col-5"></div>
-    <div class="col-7">
+    <div class="col-7 bg-white border rounded">
       <div class="comment_index">
         <% @post.comments.each do |post_comment| %>
           <div>
+            <span class="border rounded">
+              <%= link_to user_path(post_comment.user) do %>
+                <%= post_comment.user.account_name %>
+              <% end %>
+            </span>
             <%= post_comment.comment %>
-            <%= post_comment.user.account_name %>
             <% if post_comment.user == current_user %>
-              <div>
-                <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %>
-              </div>
+              <%= link_to "削除", post_comment_path(post_comment.post, post_comment), class: 'text-danger', method: :delete %>
             <% end %>
           </div>
         <% end %>

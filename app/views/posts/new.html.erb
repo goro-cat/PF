@@ -4,7 +4,7 @@
   </div>
 <% end %>
 
-<div class="form-container">
+<div class="form-container border rounded m-5">
   <h2 class="title">新規投稿</h2>
 
   <%= form_with model: @post, local: true do |f| %>
@@ -13,7 +13,6 @@
     <tr>
       <th></th>
       <td>
-        <%#= f.collection_radio_buttons :category, Post.categories_i18n.keys.map{|k| [I18n.t("enum.post.category.#{k}").k]} %>
         <%= f.radio_button :category, :'捜索中' %>
         <%= f.label :category_search, '捜索中' %>
         <%= f.radio_button :category, :'保護中' %>
@@ -69,8 +68,8 @@
     <tr>
       <th></th>
       <td>
-        <%= link_to request.referer, class: 'btn btn-primary' do %><i class="fas fa-arrow-left">もどる</i><% end %>
-        <%= f.submit '投稿', class: 'btn btn-primary' %>
+        <%= link_to request.referer, class: 'btn border rounded m-5' do %><i class="fas fa-arrow-left">もどる</i><% end %>
+        <%= f.submit '投稿', class: 'btn btn-primary m-5' %>
       </td>
     </tr>
   </table>

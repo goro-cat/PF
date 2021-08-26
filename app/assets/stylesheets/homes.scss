@@ -4,6 +4,7 @@
 
 .image1 {
   background-image: image-url("dog1.jpg");
+  padding: 5px auto;
 }
 .image2 {
   background-image: image-url("cat1.jpg");
@@ -16,10 +17,5 @@
 }
 
 .top-main{
-  background-color: #fff;
   text-align: center;
-}
-
-.title{
-  
 }

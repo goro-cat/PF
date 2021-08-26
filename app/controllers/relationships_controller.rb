@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_user!
+  
   # def index
   #  @user = User.where.not(id: current_user.id).page(params[:page]).reverse_order
   # @user = User.follower.all

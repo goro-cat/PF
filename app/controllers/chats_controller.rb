@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @my_chats = current_user.chats
     @chat_partners = User.where.not(id: current_user.id)

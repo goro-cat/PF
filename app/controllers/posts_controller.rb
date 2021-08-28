@@ -8,18 +8,19 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @unchecked_notifications = Notification.where(visited_id: current_user.id, cheacked: false)
     @comment = Comment.new
   end
 
   def create
     # postにuser_idを持たせる必要があるため、current_userを追記
     @post = current_user.posts.create(post_params)
-    # @post.post_images.image = "logo.jpg"
 
     if @post.save
       flash[:notice] = '投稿できました'
       redirect_to post_path(@post)
     else
+      flash[:danger] = '投稿ができませんでした'
       render :new
     end
   end
@@ -35,7 +36,7 @@ class PostsController < ApplicationController
       flash[:notice] = '投稿できました'
       redirect_to post_path(@post)
     else
-
+      flash[:danger] = '投稿ができませんでした'
       render :edit
     end
   end
@@ -43,8 +44,10 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.find(params[:id])
     if @post.destroy
+      flash[:notice] = '投稿を削除しました'
       redirect_to user_path(@post.user_id)
     else
+      flash[:danger] = '投稿の削除に失敗しました'
       redirect_to request referer
     end
   end

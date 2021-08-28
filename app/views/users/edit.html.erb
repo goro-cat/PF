@@ -1,70 +1,63 @@
-<h2>マイページ　編集</h2>
-<div class="contener">
+<h2 class="font p-3">マイページ　編集</h2>
+<div class="contener m-5">
   <%= form_with model: @user, local: true do |f| %>
-  <form class="form-horizontal">
-    <div class="form-group">
-      <label for="inputName" class="col-sm-2">名前</label>
-      <div class="col-sm-10">
-        <%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"名前", class: 'border rounded' %>
-        <%= f.text_field :first_name, autocomplete: "first_name", class: 'border rounded' %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :"名前（カタカナ）" %>
-      <div class="col-sm-10">
-        <%= f.text_field :kana_last_name, autocomplete: "kana_last_name", class: 'border rounded' %>
-        <%= f.text_field :kana_first_name, autocomplete: "kana_first_name", class: 'border rounded' %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :"住所" %>
-      <div class="col-sm-10">
-      <%= f.text_field :address, autocomplete: "address", class: 'border rounded' %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :"連絡先" %>
-      <div class="col-sm-10">
-      <%= f.text_field :phone_number, autocomplete: "phone_number", class: 'border rounded' %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :"メールアドレス" %>
-      <div class="col-sm-10">
-      <%= f.email_field :email, autocomplete: "email", class: 'border rounded' %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :"アカウント名" %>
-      <div class="col-sm-10">
-      <%= f.text_field :account_name, autocomplete: "account_name", class: 'border rounded' %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label for="inputimage">アカウント画像</label>
-      <div class="col-sm-10">
-        <%= attachment_image_tag @user, :account_image, :fill, 30, 30, class: 'border rounded', fallback: "icon.jpeg" %>
-        <%= f.attachment_field :account_image %>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <%= f.label :"自己紹介" %>
-      <%= f.text_area :introduction, autofocus: "introduction", size: '40x2', class: 'border rounded' %>
-    </div>
-    
-    <div class="form-group">
-      <%= link_to request.referer, class: 'btn btn-primary' do %><i class="fas fa-arrow-left">もどる</i><% end %>
-      <%= f.submit "保存", class: 'btn btn-primary' %>
-    </div>
-    
-  </form>
+
+  <table class="table bg-white border rounded">
+    <tr>
+      <th><%= f.label :"名前" %></th>
+      <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"名前", class: 'border rounded' %></td>
+      <td><%= f.text_field :first_name, autocomplete: "first_name", class: 'border rounded' %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :"名前（カタカナ）" %></th>
+      <td><%= f.text_field :kana_last_name, autocomplete: "kana_last_name", class: 'border rounded' %></td>
+      <td><%= f.text_field :kana_first_name, autocomplete: "kana_first_name", class: 'border rounded' %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :"住所" %></th>
+      <td colspan="2"><%= f.text_field :address, autocomplete: "address", size: '50x2', class: 'border rounded' %></td>
+
+    </tr>
+
+    <tr>
+      <th><%= f.label :"連絡先" %></th>
+      <td colspan="2"><%= f.text_field :phone_number, autocomplete: "phone_number", class: 'border rounded' %></td>
+
+    </tr>
+
+    <tr>
+      <th><%= f.label :"メールアドレス" %></th>
+      <td colspan="2"><%= f.email_field :email, autocomplete: "email", class: 'border rounded' %></td>
+
+    </tr>
+
+    <tr>
+      <th><%= f.label :"アカウント名" %></th>
+      <td colspan="2"><%= f.text_field :account_name, autocomplete: "account_name", class: 'border rounded' %></td>
+
+    </tr>
+
+    <tr>
+      <th><label for="inputimage">アカウント画像</label></th>
+      <td>
+        <%= attachment_image_tag @user, :account_image, size: '70x70', class: 'border rounded', fallback: "icon.jpeg" %>
+      </td>
+      <td><%= f.attachment_field :account_image %></td>
+
+    </tr>
+
+    <tr>
+      <th><%= f.label :"自己紹介" %></th>
+      <td colspan="2"><%= f.text_area :introduction, autofocus: "introduction", size: '60x3', class: 'border rounded' %></td>
+    </tr>
+
+  </table>
+  <div class="form-group m-5">
+    <%= f.submit "保存", class: 'btn btn-info w-25' %>
+  </div>
+
   <% end %>
 </div>
 

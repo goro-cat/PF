@@ -1,17 +1,21 @@
 <div class="container">
-  <h1>チャット相手一覧</h1>
-  <table>
-    <% @chat_partners.each do |user| %>
-    <tr>
-      <td>
-        <%= attachment_image_tag user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %>
-      </td>
-      <td><%= link_to user_path(user.id) do %>
-            <%= user.account_name %>
-          <% end %>
-      </td>
-      <td><%= link_to 'チャットする', chat_path(user.id) %></td>
-    </tr>
-    <% end %>
-  </table>
+  <h1 class="font p-3">チャット相手一覧</h1>
+
+    <div class="col-8 border rounded bg-white m-5">
+      <table>
+        <% @chat_partners.each do |user| %>
+        <tr>
+          <td>
+            <%= attachment_image_tag user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %>
+          </td>
+          <td><%= link_to user_path(user.id) do %>
+                <%= user.account_name %>
+              <% end %>
+          </td>
+          <td><%= link_to 'チャットする', chat_path(user.id) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+
 </div>

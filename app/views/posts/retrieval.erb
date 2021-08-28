@@ -1,16 +1,18 @@
-<div class="">
+<div class="top-content mt-3">
   <%= render 'posts/retrieval', keyword: @keyword %>
   <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
 </div>
 
 
 
-<div class="cintainer">
-  <h2 class="title">検索結果 <span>"<%= @keyword %>"</span></h2>
+<div class="cintainer p-5">
+  <h2 class="font">検索結果 <span >"<%= @keyword %>"</span></h2>
 
   <!--検索結果-->
-  <h3 class="border-bottom title">捜索</h3>
-  <%= render 'posts/list', posts: @search_posts %>
-  <h3 class="border-bottom title">保護</h3>
-   <%= render 'posts/list', posts: @protect_posts %>
+  <div class="bg-white border rounded w-100">
+    <h3 class="border-bottom title">捜索投稿</h3>
+    <%= render 'posts/list', posts: @search_posts %>
+    <h3 class="border-bottom title">保護投稿</h3>
+    <%= render 'posts/list', posts: @protect_posts %>
+  </div>
 </div>

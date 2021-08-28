@@ -21,7 +21,10 @@ class Chat < ApplicationRecord
       visited_id: visited_id,
       action: 'chat'
     )
-    notification.checked == true if notification.visiter_id == notification.visited_id
+    if notification.visiter_id == notification.visited_id
+      notification.cheacked = true
+    end
     notification.save if notification.valid?
   end
+  
 end

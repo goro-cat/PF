@@ -1,13 +1,13 @@
 <div class="container">
-  <h3 class="font"><%= @user.account_name %>さん　のページです</h3>
-  <div class="row">
+  <h3 class="font p-3"><%= @user.account_name %> さんのページです</h3>
+  <div class="row pb-5">
     <div class="col-4">
       <%= render 'users/info', user: @user %>
     </div>
 
     <div class="col-8">
-      <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
-      <h4 class="font">投稿一覧</h4>
+      <h4 class="post-btn"><%= link_to new_post_path, class: 'btn btn-light m-2' do %><i class="fas fa-plus-circle"> 投稿する</i><% end %></h4>
+      <h4 class="font mt-3">投稿一覧</h4>
       <%= render 'posts/list', posts: @posts %>
     </div>
   </div>

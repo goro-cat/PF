@@ -10,21 +10,22 @@
 <div class="top-main height:500px bg-white">
   <h1 class="title p-5 h-100">まよほご掲示板</h1>
 
-  <h3 class="font">
-    <span>まよ</span>い　犬 <br />
-    <span>ほご</span>　猫 <br />
-       の <br />
-    情報を集める　<span>掲示板</span>　です
-  </h3>
-
-  <p class="font">いなくなってしまったペットの情報</br>
-     保護した動物の情報を持ち寄ろう<br />
-     <br />
-     見かけた投稿にはコメント<br />
-     気になる保護投稿にはフォローしてチャット<br />
-     <br />
-     <br />
+  <p class="font">いなくなってしまったペットの情報や</br>
+     保護した動物の情報を持ち寄ろう
   </p>
+  
+
+  <% if user_signed_in? %>
+    <div>
+      <%= link_to "新規投稿", new_post_path, class: 'btn btn-primary w-50 m-5' %>
+    </div>
+  <% else %>
+    <div>
+      <%= link_to "初めての方( 会員登録 )", new_user_registration_path, class: 'btn btn-info w-25 m-5' %>
+      <%= link_to "ログイン", new_user_session_path, class: 'btn btn-success w-25 m-5' %>
+    </div>
+  <% end %>
+
 </div>
 <div class="post_image post mt-5 mb-5 bg-white">
   <h3 class="title border-bottom">捜索投稿</h3>

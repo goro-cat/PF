@@ -1,23 +1,23 @@
-<h3 class="title"><%= "#{@chat_partner.account_name}" + "　さんとのチャットルームです" %></h3>
+<h3 class="font p-3"><%= "#{@chat_partner.account_name}" + "　さんとのチャット" %></h3>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-8">
+  <div class="col-8 bg-white border rounded font">
     <div id="chats">
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
-          <div class="my_message">
+          <div class="my_message p-2">
             <tr>
               <td>
                 <%= chat.message %>
-                <%= attachment_image_tag chat, :chat_image, :fill, 200, 120, format: "jpg" %>
+                <%= attachment_image_tag chat, :chat_image, size: "200x120" %>
               </td>
-              <td><%= attachment_image_tag chat.user, :account_image, size: "80x80", class: 'rounded-circle pr-0', fallback: "icon.jpeg" %></td>
+              <td><%= attachment_image_tag chat.user, :account_image, size: "70x70", class: 'rounded-circle pr-0', fallback: "icon.jpeg" %></td>
             </tr>
           </div>
         <% else %>
-          <div class="partner_message">
+          <div class="partner_message p-2">
             <tr>
-              <td><%= attachment_image_tag chat.user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %></td>
+              <td><%= attachment_image_tag chat.user, :account_image, size: "70x70", class: 'rounded-circle', fallback: "icon.jpeg" %></td>
               <td>
                 <%= chat.message %>
                 <%= attachment_image_tag chat, :chat_image, size: "200x120" %>

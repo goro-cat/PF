@@ -1,9 +1,10 @@
 class ChatsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @my_chats = current_user.chats
     @chat_partners = User.where.not(id: current_user.id)
+    @chat_partners.order(chat_id: "DESC")
   end
 
   def show
@@ -17,8 +18,12 @@ class ChatsController < ApplicationController
   end
 
   def create
-    chat = Chat.new(chat_params)
-    chat.save
+    #user = User.find(params[:partner_id])
+    @chat = Chat.new(chat_params)
+    @chat.save
+    #if @chat.save
+    #  user.create_notification_chat!(current_user, @chat.id)
+    #end
     redirect_to request.referer
   end
 

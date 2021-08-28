@@ -1,24 +1,25 @@
-
-<% if users.exists? %>
-
-  <% users.each do |user| %>
-    <% if current_user.following?(user) %>
-      <div>
-        <%= attachment_image_tag user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %>
-        <%= link_to "フォローを解除する", user_relationships_path(user.id), method: :delete %>
-        <%= link_to "チャットする", chat_path(user.id) %><br />
-        <%= user.account_name %>
-      </div>
-
-    <% else %>
-      <div>
-        <%= attachment_image_tag user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %>
-        <%= link_to "フォローする", user_relationships_path(user.id), method: :post %><br />
-        <%= user.account_name %>
-      </div>
+<div class="list">
+  <% if users.exists? %>
+    <% users.each do |user| %>
+      <% if current_user.following?(user) %>
+        <div class= 'p-2'>
+          <%= attachment_image_tag user, :account_image, size: "80x80", class: 'rounded-circle p-2', fallback: "icon.jpeg" %>
+          <%= link_to user_path(user), class: 'font pr-5' do %><%= user.account_name %><% end %>
+          <% if user.following?(current_user) %>
+            <%= link_to "チャットする", chat_path(user.id), class: 'border rounded border-warning p-2' %>
+          <% end %>
+          <%= link_to "フォローを解除する", user_relationships_path(user.id), class: 'border rounded border-danger p-2', method: :delete %>
+        </div>
+      <% else %>
+        <div class= 'p-2'>
+          <%= attachment_image_tag user, :account_image, size: "80x80", class: 'rounded-circle', fallback: "icon.jpeg" %>
+          <%= link_to user_path(user), class: 'font pr-5' do %><%= user.account_name %><% end %>
+          <%= link_to "フォローする", user_relationships_path(user.id), class: 'border rounded border-success p-2', method: :post %>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
 
-<% else %>
-  <p class="nothing">ユーザーがいません。</p>
-<% end %>
+  <% else %>
+    <p class="nothing">ユーザーがいません</p>
+  <% end %>
+</div>

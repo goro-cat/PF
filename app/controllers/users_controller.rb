@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  
-  
+
+
   def show
     @user = User.find(params[:id])
+    @unchecked_notifications = Notification.where(visited_id: current_user.id, cheacked: false)
     @posts = Post.where(user_id: @user).page(params[:page]).per(5)
   end
 
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
+    @unchecked_notifications = Notification.where(visited_id: current_user.id, cheacked: false)
   end
 
   private

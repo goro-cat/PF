@@ -1,4 +1,4 @@
-<h3>投稿詳細画面</h3>
+<h3 class="font p-3">投稿の詳細</h3>
 
 <div class="container mb-5">
   <div>
@@ -16,36 +16,43 @@
         <% end %>
       </div>
       <div class="col=5 bg-white border rounded">
-        <div>
+        <div class="top-content p-2">
           <% if @post.user == current_user %>
-            <%= link_to '編集', edit_post_path(@post) %> /
-            <%= link_to '削除', post_path(@post), class: 'text-danger', method: :delete %>
+            <%= link_to '編集', edit_post_path(@post), class: 'btn btn-secondary' %>
+            <%= link_to '削除', post_path(@post), class: 'btn btn-danger', method: :delete %>
           <% end %>
         </div>
-        <table class="table font">
+        <table class="table">
           <tr>
-            <td>投稿日</td>
+            <th>投稿日</th>
             <td><%= @post.created_at.strftime('%Y年%m月%d日') %></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><%= @post.category %></td>
-            <td><%= @post.animal %></td>
-            <td><%= @post.pet_sex %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td colspan="2"><%= @post.pet_name %></td>
-          </tr>
-          <tr>
-            <td colspan="3"><%= @post.text %></td>
-          </tr>
-          <tr>
-            <td></td>
             <td id="favorites_buttons_<%= @post.id %>">
               <%= render 'favorites/favorite', post: @post %>
             </td>
+          </tr>
+          <tr>
+            <th>場所</th>
+            <td><%= @post.plase %></td>
             <td></td>
+          </tr>
+          <tr>
+            <th><%= @post.category %></th>
+            <td><%= @post.animal %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>性別 </th>
+            <td><%= @post.pet_sex %></td>
+            <td></td>
+          </tr>
+          <% if @post.pet_name.present? %>
+            <tr>
+              <th>名前 </th>
+              <td colspan="2"><%= @post.pet_name %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="3"><%= @post.text %></td>
           </tr>
         </table>
       </div>
@@ -53,20 +60,26 @@
 
 
   </div>
-  <div class="row">
-    <div class="col-5"></div>
-    <div class="col-7 bg-white border rounded">
+  <div class="row p-3">
+    <div class="col-3"></div>
+    <div class="col-4"></div>
+    <div class="col=5 bg-white border rounded p-2">
       <div class="comment_index">
         <% @post.comments.each do |post_comment| %>
-          <div>
-            <span class="border rounded">
-              <%= link_to user_path(post_comment.user) do %>
-                <%= post_comment.user.account_name %>
-              <% end %>
-            </span>
-            <%= post_comment.comment %>
+          <div class="pb-1">
             <% if post_comment.user == current_user %>
+            <span class="border rounded">
+              <%= post_comment.user.account_name %>
+            </span>
+              <%= post_comment.comment %>
               <%= link_to "削除", post_comment_path(post_comment.post, post_comment), class: 'text-danger', method: :delete %>
+            <% else %>
+              <span class="border rounded">
+                <%= link_to user_path(post_comment.user) do %>
+                  <%= post_comment.user.account_name %>
+                <% end %>
+              </span>
+              <%= post_comment.comment %>
             <% end %>
           </div>
         <% end %>
@@ -74,7 +87,7 @@
 
 
 
-      <div class="comment">
+      <div class="comment pt-3">
         <%= form_with(model:[@post, @comment]) do |comment| %>
           <%= comment.text_area :comment, size: '30x2', class: 'border rounded', placeholder: "コメント欄" %>
           <%= comment.submit "送信", class: 'btn-sm btn-primary border rounded' %>

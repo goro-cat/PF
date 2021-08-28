@@ -4,13 +4,12 @@
       <% posts.each do |post| %>
       <div class="card" style="width:20rem">
         <img class="card-img-top">
-        <%= attachment_image_tag post.post_images[0], :image, class: 'rounded', size: '20rem', fallback: "logo.jpg" %>
+        <%= attachment_image_tag post.post_images[0], :image, class: 'rounded', size: '10rem', fallback: "logo.jpg" %>
 
         <div class="card-body">
-          <h5 class="card-title font"><%= post.category %> / <%= post.plase %></h5>
-          <table class="table font">
+          <h5 class="card-title"><%= post.category %> / <%= post.plase %></h5>
+          <table class="table">
             <tr>
-              <td><%= attachment_image_tag post.user, :account_image, size: "50x50", class: 'rounded-circle', fallback: "icon.jpeg" %></td>
               <td>
                 <div id="favorites_buttons_<%= post.id %>">
                   <%= render partial: 'favorites/favorite', locals: {post: post} %>

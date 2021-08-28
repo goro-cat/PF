@@ -1,27 +1,33 @@
 <!--ユーザ情報-->
-<div class="info-contaner border rounded font">
-  <%= attachment_image_tag user, :account_image, size: "100x100", class: 'rounded-circle', fallback: "icon.jpeg" %><br />
-  <%= link_to user_path(user) do %>
-    <%= user.account_name %>
-  <% end %>
-  <div>
-     <%= user.introduction %>
-  </div>
-  <div class="font">
-    <% if user.id == current_user.id %>
-      <%= link_to '編集', edit_user_path(user.id) %><br />
-      <%= link_to 'チャット', chats_path %><br />
-      <%= link_to 'いいね', favorites_user_path(user.id) %><br />
-      <%= link_to '通知', notifications_path %><br />
-      <%= link_to "フォロー", user_followings_path(user.id) %><br />
-      <%= link_to "フォロワー", user_followers_path(user.id) %>
-  
-  
-    <% elsif current_user.following?(user) %>
-      <%= link_to "チャット", chat_path(user.id) %>
-      <%= link_to "フォローを解除", user_relationships_path(user.id), method: :delete %><br />
-    <% else %>
-      <%= link_to "フォロー", user_relationships_path(user.id), method: :post %>
+<div class="info-contaner border rounded">
+  <div class="info">
+    <%= attachment_image_tag user, :account_image, size: "100x100", class: 'rounded-circle p-2', fallback: "icon.jpeg" %><br />
+    <%= link_to user_path(user), class: 'font' do %>
+      <%= user.account_name %>
     <% end %>
+    <div>
+      <%= user.introduction %>
+    </div>
+    <div class="font p-3">
+      <% if user.id == current_user.id %>
+        <%= link_to '編集', edit_user_path(user.id) %><br />
+        <%= link_to 'いいね', favorites_user_path(user.id) %><br />
+        <% if @unchecked_notifications.any? %>
+          <i class="fa fa-circle" style="color: gold;"></i>
+        <% end %>
+        <%= link_to '通知', notifications_path %><br />
+        <%= link_to "フォロー", user_followings_path(user.id) %><br />
+        <%= link_to "フォロワー", user_followers_path(user.id) %>
+
+
+      <% elsif current_user.following?(user) %>
+        <% if user.following?(current_user) %>
+          <%= link_to "チャット", chat_path(user.id) %>
+        <% end%>
+        <%= link_to "フォローを解除", user_relationships_path(user.id), method: :delete %><br />
+      <% else %>
+        <%= link_to "フォロー", user_relationships_path(user.id), method: :post %>
+      <% end %>
+    </div>
   </div>
 </div>

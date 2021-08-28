@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def application
-    @unchecked_notifications = current_user.passive_notifications.where(checked: false)
+   # @unchecked_notifications = current_user.passive_notifications.where(checked: false)
+    @unchecked_notifications = current_user.notifications.where(visited_id: current_user.id, cheacked: false)
   end
 
   protected

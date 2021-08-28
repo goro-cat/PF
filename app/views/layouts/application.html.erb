@@ -28,21 +28,13 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-                <li class="nav-item"><%= link_to search_path, class: 'nav-link text-dark' do %><i class="fas fa-paw">捜索一覧</i><% end %></li>
+                <li class="nav-item"><%= link_to search_path, class: 'nav-link text-dark' do %><i class="fas fa-paw">捜索願い一覧</i><% end %></li>
                 <li class="nav-item"><%= link_to protect_path, class: 'nav-link text-dark' do %><i class="fas fa-hand-holding-medical">保護一覧</i><% end %></li>
-                <li class="nav-item">
-                  <%= link_to notifications_path, class: 'nav-link text-dark' do %>
-                    <% if @unchecked_notifications.present? %>
-                      <i class="fa fa-circle" style="color: gold;"></i>
-                    <% end %>
-                  <i class="fas fa-bell">通知</i>
-                  <% end %>
-                </li>
                 <li class="nav-item"><%= link_to user_path(current_user.id), class: 'nav-link text-dark' do %><i class="fas fa-home">マイページ</i><% end %></li>
 
                 <li class="nav-item"><%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-dark' do %><i class="fas fa-sign-out-alt">ログアウト</i><% end %></li>
               <% else %>
-                <li class="nav-item"><%= link_to search_path, class: 'nav-link text-dark' do %><i class="fas fa-paw">捜索一覧</i><% end %></li>
+                <li class="nav-item"><%= link_to search_path, class: 'nav-link text-dark' do %><i class="fas fa-paw">捜索願い一覧</i><% end %></li>
                 <li class="nav-item"><%= link_to protect_path, class: 'nav-link text-dark' do %><i class="fas fa-hand-holding-medical">保護一覧</i><% end %></li>
                 <li class="nav-item"><%= link_to new_user_registration_path, class: 'nav-link text-dark' do %><i class="fas fa-user-plus">新規登録</i><% end %></li>
                 <li class="nav-item"><%= link_to new_user_session_path, class: 'nav-link text-dark' do %><i class="fas fa-sign-in-alt">ログイン</i><% end %></li>

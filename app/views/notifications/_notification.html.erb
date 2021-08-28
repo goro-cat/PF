@@ -12,9 +12,9 @@
   <% case notification.action %>
     <% when 'follow' then %>
       <%= "あなたをフォローしました" %>
-    <%# when 'chat' then %>
-      <%#= link_to 'あなたにメッセージ', chat_path(notification.visiter), style:"font-weight: bold;", class: "border-bottm" %>
-      <%#= "を送りました" %>
+    <% when 'chat' then %>
+      <%= link_to 'あなたにメッセージ', chat_path(notification.visiter), style:"font-weight: bold;", class: "border-bottm" %>
+      <%= "を送りました" %>
     <% when 'comment' then %>
       <%= link_to 'あなたの投稿にコメント', post_path(notification.post_id), style:"font-weight: bold;", class: "border-bottom" %>
       <%= "をしました" %>

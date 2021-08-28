@@ -50,4 +50,24 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+
+  #chatにメッセージがきたときの通知作成
+  def create_notification_chat!(current_user)
+    temp_ids = Chat.select(:user_id).where(caht_id).where.not(user_id: current_user.id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_chat!(current_user, chat_id, temp_id['user_id'])
+    end
+    save_notification_caht!(current_user, chat_id, user_id) if temp_ids.blank?
+  end
+
+  def save_notification_chat!(current_user, chat_id, visited_id)
+    notification = current_use.active_notifications.new(
+      chat_id: chat_id,
+      visited_id: visited_id,
+      action: 'chat'
+    )
+    notification.cheacked = true if notification.visiter_id == notification.visited_id
+    notification.save if notification.valid
+  end
+
 end

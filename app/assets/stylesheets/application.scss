@@ -39,12 +39,12 @@
 
 
 .top_container{
-  height: 500px;
+  height: 350px;
+  padding: 10px;
+  text-align: center;
+  
 }
 
-.image{
- padding: 20px auto;
-}
 
 .main{
 background-image: image-url('bluen.jpg');
@@ -75,9 +75,22 @@ background-image: image-url('bluen.jpg');
 }
 
 .top-content{
+ padding: 0 30px;
  text-align: right;
 }
 
 .more{
  text-align: right;
+}
+
+.my_message{
+ text-align: right;
+}
+
+.info{
+ text-align: center;
+}
+
+.list{
+ text-align:center;
 }

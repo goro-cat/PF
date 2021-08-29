@@ -5,8 +5,6 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  # アソシエーションで繋がっているとき、まとめてレコードを保存出来るようにするメソッド(+ controller)
-  # accepts_nested_attributes_for :post_images
   has_many :post_images, dependent: :destroy
   accepts_attachments_for :post_images, attachment: :image
 
@@ -24,16 +22,6 @@ class Post < ApplicationRecord
   def self.retrieval(keyword)
     where(["text like? OR  plase like? OR pet_name like?", "%#{keyword}%",  "%#{keyword}%", "%#{keyword}%"])
   end
-
-  # いいねの通知機能
-  # def create_notification_by(current_user)
-  #  notification = current_user.active_notifications.new(
-  #    post_id: id,
-  #    visited_id: user_id,
-  #    action: "favorite"
-  #    )
-  #    notification.save if notification.valid?
-  # end
 
   # 自分の投稿に自分以外にコメントしている人をすべて取得＋全員(temp_ids)に通知を送る
   def create_notification_comment!(current_user, comment_id)

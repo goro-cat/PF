@@ -3,7 +3,7 @@
 <div class="container mb-5">
   <div>
     <div class="row">
-      <div class="col-3">
+      <div class="col-2">
         <%= render 'users/info', user: @post.user %>
       </div>
       <div class="col-4">
@@ -15,7 +15,7 @@
           <%= image_tag "logo.jpg" %>
         <% end %>
       </div>
-      <div class="col=5 bg-white border rounded">
+      <div class="col=6 bg-white border rounded">
         <div class="top-content p-2">
           <% if @post.user == current_user %>
             <%= link_to '編集', edit_post_path(@post), class: 'btn btn-secondary' %>

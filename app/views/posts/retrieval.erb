@@ -1,6 +1,8 @@
 <div class="top-content mt-3">
   <%= render 'posts/retrieval', keyword: @keyword %>
-  <%= link_to new_post_path do %><i class="fas fa-plus-circle">投稿する</i><% end %>
+  <%= link_to new_post_path, class: 'btn btn-light m-2' do %>
+    <i class="fas fa-plus-circle"> 投稿する</i>
+  <% end %>
 </div>
 
 

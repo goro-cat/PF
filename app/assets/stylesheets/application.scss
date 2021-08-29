@@ -16,12 +16,9 @@
  @import "bootstrap";
  @font-face{
   font-family: 'Jiyucho';
-  src: font-url('/assets/Jiyucho.otf');
+  src: asset_url('Jiyucho.otf') format('Jiyucho');
  }
 
- .footer{
-
- }
 
  .footer_main{
   text-align: center;
@@ -42,7 +39,6 @@
   height: 350px;
   padding: 10px;
   text-align: center;
-  
 }
 
 

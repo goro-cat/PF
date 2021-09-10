@@ -22,7 +22,7 @@
 
       <% elsif current_user.following?(user) %>
         <% if user.following?(current_user) %>
-          <%= link_to "チャット", chat_path(user.id) %>
+          <%= link_to "チャット", chat_path(user.id) %><br />
         <% end%>
         <%= link_to "フォローを解除", user_relationships_path(user.id), method: :delete %><br />
       <% else %>

@@ -1,12 +1,12 @@
 <h3 class="font p-3">投稿の詳細</h3>
 
 <div class="container mb-5">
-  <div>
+  
     <div class="row">
       <div class="col-2">
         <%= render 'users/info', user: @post.user %>
       </div>
-      <div class="col-4">
+      <div class="col-10">
         <% if @post.post_images.present? %>
           <% @post.post_images.each do |image| %>
             <%= attachment_image_tag image, :image, class: 'rounded', size: "200x200" %>
@@ -14,8 +14,9 @@
         <% else %>
           <%= image_tag "logo.jpg" %>
         <% end %>
-      </div>
-      <div class="col=6 bg-white border rounded">
+        
+        
+        <div class="bg-white border rounded">
         <div class="top-content p-2">
           <% if @post.user == current_user %>
             <%= link_to '編集', edit_post_path(@post), class: 'btn btn-secondary' %>
@@ -55,15 +56,10 @@
             <td colspan="3"><%= @post.text %></td>
           </tr>
         </table>
-      </div>
     </div>
-
-
-  </div>
-  <div class="row p-3">
-    <div class="col-3"></div>
-    <div class="col-4"></div>
-    <div class="col=5 bg-white border rounded p-2">
+        
+        
+        <div class="bg-white border rounded p-2">
       <div class="comment_index">
         <% @post.comments.each do |post_comment| %>
           <div class="pb-1">
@@ -93,7 +89,8 @@
           <%= comment.submit "送信", class: 'btn-sm btn-primary border rounded' %>
         <% end %>
       </div>
+        
 
+      </div>
     </div>
   </div>
-</div>

@@ -1,13 +1,34 @@
 <!--コメント-->
 
 <% post.comments.each do |post_comment| %>
-  <div>
-    <%= post_comment.comment %>
-    <%= post_comment.user.account_name %>
+  <div class="pb-1">
+    <%= attachment_image_tag post_comment.user, :account_image, size: "50x50", class: 'rounded-circle p-2', fallback: "icon.jpeg" %>
     <% if post_comment.user == current_user %>
-      <div>
-        <%= link_to "削除", post_comment_path(post_comment.post, post_comment), method: :delete %>
-      </div>
+      <span>
+        <%= post_comment.user.account_name %>
+      </span>
+      <span class="m-3">
+        <%= post_comment.comment %>
+      </span>
+      <%= link_to "削除", post_comment_path(post_comment.post, post_comment), class: 'text-danger border rounded', method: :delete %>
+    <% else %>
+      <span class="border rounded">
+        <%= link_to user_path(post_comment.user) do %>
+          <%= post_comment.user.account_name %>
+        <% end %>
+      </span>
+      <span class="m-3">
+        <%= post_comment.comment %>
+      </span>
     <% end %>
   </div>
-<% end %>
+  <% end %>
+  </div>
+
+
+<div class="comment pt-3">
+  <%= form_with(model:[post, comment]) do |comment| %>
+  <%= comment.text_area :comment, size: '50x2', class: 'border rounded', placeholder: "コメント欄" %>
+  <%= comment.submit "送信", class: 'btn-sm btn-primary border rounded' %>
+  <% end %>
+</div>

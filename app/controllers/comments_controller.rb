@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  
-  
+
+
   def create
     post_comment = Post.find(params[:post_id])
     @comment = current_user.comments.new(comment_params)
@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
     if @comment.save
       # post.rbに記述したメソッドで通知を発射！
       @post.create_notification_comment!(current_user, @comment.id)
-      redirect_to request.referer
+      #redirect_to request.referer
     else
-      redirect_to post_path(post_comment)
+      #redirect_to post_path(post_comment)
     end
   end
 

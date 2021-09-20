@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
     if @comment.save
       # post.rbに記述したメソッドで通知を発射！
       @post.create_notification_comment!(current_user, @comment.id)
-      #redirect_to request.referer
+      redirect_to request.referer
     else
-      #redirect_to post_path(post_comment)
+      redirect_to post_path(post_comment)
     end
   end
 

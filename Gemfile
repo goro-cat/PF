@@ -91,3 +91,8 @@ gem 'rails-i18n'
 # RuboCopコード添削
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+
+# RSpecテスト
+group :test do
+  gem 'rspec-rails'
+end

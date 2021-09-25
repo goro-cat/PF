@@ -4,7 +4,7 @@
       <% posts.each do |post| %>
       <div class="card" style="width:20rem">
         <img class="card-img-top">
-        <%= attachment_image_tag post.post_images[0], :image, class: 'rounded', size: '10rem', fallback: "logo.jpg" %>
+        <%= attachment_image_tag post.post_images[0], :image, class: 'rounded', size: '10rem', fallback: "logo.jpg", class: 'card-img-top' %>
 
         <div class="card-body">
           <h5 class="card-title"><%= post.category %> / <%= post.plase %></h5>

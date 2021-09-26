@@ -25,6 +25,15 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        last_name: 氏
+        first_name: 名前
+        kana_last_name: カナ氏
+        kana_first_name: カナ名前
+        account_name: アカウント名
+        account_image_id: アカウント画像
+        address: 住所
+        phone_number: 連絡先
+        introduction: 自己紹介
     models:
       user: ユーザ
   devise:

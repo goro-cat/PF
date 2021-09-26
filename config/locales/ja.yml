@@ -216,3 +216,17 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        text: 本文
+        plase: 場所
+        pet_name: 名前
+        pet_sex: 性別
+        category: カテゴリー
+        animal: 動物の種類
+
